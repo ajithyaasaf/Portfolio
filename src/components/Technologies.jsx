@@ -1,8 +1,9 @@
-import { RiReactjsLine } from "react-icons/ri";
-import { SiMongodb, SiFigma } from "react-icons/si";
-import { FaNodeJs, FaServer } from "react-icons/fa"; 
-import { DiNodejsSmall } from "react-icons/di"; // Using node server icon for Express.js
-import { motion } from 'framer-motion';
+import { RiReactjsLine, RiTailwindCssLine } from "react-icons/ri";
+import { SiMongodb, SiFigma, SiTypescript, SiFirebase, SiNextdotjs } from "react-icons/si";
+import { FaNodeJs } from "react-icons/fa";
+import { TbBrandReactNative } from "react-icons/tb";
+import { DiNodejsSmall } from "react-icons/di";
+import { motion } from "framer-motion";
 
 const iconVarients = (duration) => ({
   initial: { y: -10 },
@@ -17,78 +18,43 @@ const iconVarients = (duration) => ({
   },
 });
 
+const techs = [
+  { icon: <RiReactjsLine className="text-7xl text-cyan-400" />, label: "React.js", duration: 2.5 },
+  { icon: <SiNextdotjs className="text-7xl text-white" />, label: "Next.js", duration: 3 },
+  { icon: <SiTypescript className="text-7xl text-blue-500" />, label: "TypeScript", duration: 3.5 },
+  { icon: <FaNodeJs className="text-7xl text-green-400" />, label: "Node.js", duration: 4 },
+  { icon: <DiNodejsSmall className="text-7xl text-gray-400" />, label: "Express.js", duration: 4.5 },
+  { icon: <SiFirebase className="text-7xl text-yellow-400" />, label: "Firebase", duration: 5 },
+  { icon: <SiMongodb className="text-7xl text-green-500" />, label: "MongoDB", duration: 5.5 },
+  { icon: <RiTailwindCssLine className="text-7xl text-sky-400" />, label: "Tailwind CSS", duration: 6 },
+  { icon: <TbBrandReactNative className="text-7xl text-cyan-300" />, label: "React Native", duration: 6.5 },
+  { icon: <SiFigma className="text-7xl text-pink-500" />, label: "Figma", duration: 7 },
+];
+
 const Technologies = () => {
   return (
-    <div className="border-b border-neutral-800 pb-24">
-      <h1 className="my-20 text-center text-4xl">Tech Stacks</h1>
-      <div className="flex flex-wrap items-center justify-center gap-4">
-        
-        {/* MongoDB */}
-        <motion.div
-          variants={iconVarients(2.5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <SiMongodb className="text-7xl text-green-500" />
-          <p className="mt-2 text-lg font-medium">MongoDB</p>
-        </motion.div>
-        
-        {/* Express.js (Node.js icon as placeholder) */}
-        <motion.div
-          variants={iconVarients(3)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <DiNodejsSmall className="text-7xl text-gray-600" />
-          <p className="mt-2 text-lg font-medium">Express.js</p>
-        </motion.div>
-
-        {/* React.js */}
-        <motion.div
-          variants={iconVarients(4)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <RiReactjsLine className="text-7xl text-cyan-400" />
-          <p className="mt-2 text-lg font-medium">React.js</p>
-        </motion.div>
-
-        {/* Node.js */}
-        <motion.div
-          variants={iconVarients(5)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <FaNodeJs className="text-7xl text-green-400" />
-          <p className="mt-2 text-lg font-medium">Node.js</p>
-        </motion.div>
-
-        {/* Figma */}
-        <motion.div
-          variants={iconVarients(6)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <SiFigma className="text-7xl text-pink-600" />
-          <p className="mt-2 text-lg font-medium">Figma</p>
-        </motion.div>
-
-        {/* Server (General Icon) */}
-        <motion.div
-          variants={iconVarients(7)}
-          initial="initial"
-          animate="animate"
-          className="rounded-2xl border-4 border-neutral-800 p-4 text-center"
-        >
-          <FaServer className="text-7xl text-gray-500" />
-          <p className="mt-2 text-lg font-medium">Server</p>
-        </motion.div>
-        
+    <div className="border-b border-neutral-800 pb-24" id="skills">
+      <motion.h1
+        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.5 }}
+        className="my-20 text-center text-4xl"
+      >
+        Tech <span className="text-neutral-500">Stack</span>
+      </motion.h1>
+      <div className="flex flex-wrap items-center justify-center gap-6">
+        {techs.map((tech, index) => (
+          <motion.div
+            key={index}
+            variants={iconVarients(tech.duration)}
+            initial="initial"
+            animate="animate"
+            className="group rounded-2xl border-4 border-neutral-800 p-4 text-center transition-all hover:border-neutral-600"
+          >
+            {tech.icon}
+            <p className="mt-2 text-sm font-medium text-neutral-400 group-hover:text-white transition-colors">{tech.label}</p>
+          </motion.div>
+        ))}
       </div>
     </div>
   );
